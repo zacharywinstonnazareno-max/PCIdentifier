@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Identifier</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+header{
+    background:#1976D2;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.container{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.info{
+    flex:1;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px rgba(0,0,0,.1);
+}
+
+.image{
+    flex:1;
+    text-align:center;
+}
+
+.image img{
+    width:900px;
+    height:900px;
+    object-fit:contain;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    padding:20px;
+}
+
+button{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#42A5F5;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.8;
+}
+
+.quiz{
+    display:flex;
+    justify-content:center;
+    padding-bottom:20px;
+}
+
+.quiz button{
+    background:#DC3545;
+    width:250px;
+    font-size:22px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+PC IDENTIFIER
+</header>
+
+<div class="container">
+
+<div class="info">
+<p id="infoText">
+Click a computer part to learn about it.
+</p>
+</div>
+
+<div class="image">
+<img id="partImage" src="" alt="">
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="showInfo('cpu')">CPU</button>
+<button onclick="showInfo('ram')">RAM</button>
+<button onclick="showInfo('motherboard')">Motherboard</button>
+<button onclick="showInfo('storage')">Storage</button>
+<button onclick="showInfo('power')">Power Supply</button>
+<button onclick="showInfo('gpu')">GPU</button>
+
+</div>
+
+<div class="quiz">
+<button onclick="quiz()">QUIZ ME!</button>
+</div>
+
+<script>
+
+const data={
+
+cpu:{
+text:"CPU (Central Processing Unit)\n\nThe CPU is known as the brain of the computer because it controls and processes most of the system's instructions. It performs calculations, executes commands, and manages tasks from software and hardware. The CPU helps programs run smoothly and quickly by processing information efficiently. Without a CPU, a computer would not be able to operate or perform tasks.",
+image:"cpu.png"
+},
+
+ram:{
+text:"RAM (Random Access Memory)\n\nRAM is a temporary storage area used by the computer while programs are running. It allows the system to quickly access files and data that are currently in use. More RAM helps the computer multitask better and improves performance when several applications are open. The information inside RAM is erased whenever the computer is turned off.",
+image:"ram.png"
+},
+
+motherboard:{
+text:"Motherboard\n\nThe motherboard is the main circuit board of the computer and acts as the foundation of the entire system. It connects all computer components such as the CPU, RAM, storage devices, and graphics card. It allows different hardware parts to communicate and work together properly. Without the motherboard, the components would not be able to interact with one another.",
+image:"motherboard.png"
+},
+
+storage:{
+text:"Storage (HDD/SSD)\n\nStorage devices are used to permanently save files, software, and operating systems. Common examples are Hard Disk Drives (HDD) and Solid State Drives (SSD). Unlike RAM, storage keeps information even after the computer is turned off. Larger storage capacity allows users to save more files, videos, pictures, and applications.",
+image:"storage.png"
+},
+
+power:{
+text:"Power Supply Unit (PSU)\n\nThe Power Supply Unit provides electrical power to every component inside the computer. It converts electricity from the wall outlet into usable power for the system. The PSU ensures that the correct amount of energy is distributed to each hardware component safely. Without a power supply, the computer cannot turn on and function properly.",
+image:"psu.png"
+},
+
+gpu:{
+text:"GPU (Graphics Processing Unit)\n\nThe GPU is responsible for processing images, videos, and visual effects displayed on the screen. It improves graphic performance and is important for gaming, video editing, and 3D applications. A powerful GPU can create smoother animations and better image quality. It works together with the CPU to provide a better visual experience for users.",
+image:"gpu.png"
+}
+
+};
+
+function showInfo(part){
+
+document.getElementById("infoText").innerText=data[part].text;
+
+document.getElementById("partImage").src=data[part].image;
+
+}
+
+const questions=[
+"What is known as the brain of the computer?",
+"Which component stores temporary memory?",
+"What component connects all computer parts together?",
+"Which component handles graphics and visuals?",
+"Which component provides electricity?"
+];
+
+const answers=[
+"CPU",
+"RAM",
+"Motherboard",
+"GPU",
+"Power Supply"
+];
+
+function quiz(){
+
+let random=Math.floor(Math.random()*questions.length);
+
+let user=prompt(questions[random]);
+
+if(user===null)return;
+
+if(user.toLowerCase()==answers[random].toLowerCase()){
+
+alert("Correct! Great Job!");
+
+}else{
+
+alert("Wrong! Correct answer: "+answers[random]);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
